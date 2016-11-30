@@ -27,7 +27,6 @@ public class AdvancedCalculator {
 		
 		double x1=calc.a;
 		double x2=calc.b;
-		
 		int num=1000;
 		
 		double dx=(x2-x1)/num;
