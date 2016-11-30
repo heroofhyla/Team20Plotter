@@ -209,4 +209,110 @@ public class Polygon3DTests {
 			assertEquals(zExpected[i], sub.zpoints[i]);
 		}
 	}
+	
+	@Test
+	public void testClipPolygon3DInY(){
+		int[] x = {0,2,2,0};
+		int[] y = {0,0,2,2};
+		int[] z = {0,0,0,0};
+		Point3D[] normals = {new Point3D(), new Point3D(), new Point3D(), new Point3D()};
+		poly = new Polygon3D(4,x,y,z, normals);
+		
+		Polygon3D clipped = Polygon3D.clipPolygon3DInY(poly, 1);
+		int[] xExpected = {2,2,0,0};
+		int[] yExpected = {1,2,2,1};
+		int[] zExpected = {0,0,0,0};
+		
+		assertArrayEquals(xExpected, clipped.xpoints);
+		assertArrayEquals(yExpected, clipped.ypoints);
+		assertArrayEquals(zExpected, clipped.zpoints);
+	}
+	
+	@Test
+	public void testClipPolygon3DInX(){
+		int[] x = {0,2,2,0};
+		int[] y = {0,0,2,2};
+		int[] z = {0,0,0,0};
+		Point3D[] normals = {new Point3D(), new Point3D(), new Point3D(), new Point3D()};
+		poly = new Polygon3D(4,x,y,z, normals);
+		
+		Polygon3D clipped = Polygon3D.clipPolygon3DInX(poly,1);
+		int[] xExpected = {1,2,2,1};
+		int[] yExpected = {0,0,2,2};
+		int[] zExpected = {0,0,0,0};
+		
+		assertArrayEquals(xExpected, clipped.xpoints);
+		assertArrayEquals(yExpected, clipped.ypoints);
+		assertArrayEquals(zExpected, clipped.zpoints);
+	}
+	
+	@Test
+	public void testFindNormalClockwise(){
+		int[] x = {0,0,2};
+		int[] y = {0,2,0};
+		int[] z = {0,0,0};
+		
+		poly = new Polygon3D(3,x,y,z);
+		
+		Point3D normal = Polygon3D.findNormal(poly);
+		assertEquals(0, normal.x, 0.001);
+		assertEquals(0, normal.y, 0.001);
+		assertEquals(-4, normal.z, 0.001);
+	}
+	
+	@Test
+	public void testFindNormalCounterClockwise(){
+		int[] x = {0,2,0};
+		int[] y = {0,0,2};
+		int[] z = {0,0,0};
+		
+		poly = new Polygon3D(3,x,y,z);
+		
+		Point3D normal = Polygon3D.findNormal(poly);
+		assertEquals(0, normal.x, 0.001);
+		assertEquals(0, normal.y, 0.001);
+		assertEquals(4, normal.z, 0.001);
+	}
+	
+	@Test
+	public void testBuildTranslatedPolygon(){
+		int[] x = {0,0,2};
+		int[] y = {0,2,0};
+		int[] z = {0,0,0};
+		
+		poly = new Polygon3D(3,x,y,z);
+		
+		Polygon3D translated = poly.buildTranslatedPolygon(1, 1, 1);
+		
+		int[] xExpected = {1,1,3};
+		int[] yExpected = {1,3,1};
+		int[] zExpected = {1,1,1};
+		
+		assertArrayEquals(xExpected, translated.xpoints);
+		assertArrayEquals(yExpected, translated.ypoints);
+		assertArrayEquals(zExpected, translated.zpoints);
+	}
+	
+	@Test
+	public void testBuildPrismFace(){
+		int[] x1 = {0,1,0};
+		int[] y1 = {0,0,1};
+		int[] z1 = {1,1,1};
+		
+		int[] x2 = {0,1,0};
+		int[] y2 = {0,0,1};
+		int[] z2 = {0,0,0};
+		Polygon3D poly1 = new Polygon3D(3, x1,y1,z1);
+		Polygon3D poly2 = new Polygon3D(3, x2,y2,z2);
+		
+		Polygon3D face = Polygon3D.buildPrismIFace(poly1, poly2, 0);
+		
+		int[] xExpected = {0,1,1,0};
+		int[] yExpected = {0,0,0,0};
+		int[] zExpected = {1,1,0,0};
+		
+		assertArrayEquals(xExpected, face.xpoints);
+		assertArrayEquals(yExpected, face.ypoints);
+		assertArrayEquals(zExpected, face.zpoints);
+	}
 }
