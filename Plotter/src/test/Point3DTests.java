@@ -351,7 +351,7 @@ public class Point3DTests {
 		assertEquals(expected.y, test.y, 0.1);
 		assertEquals(expected.z, test.z, 0.1);
 
-		setUp();
+		setUp(); 
 	}
 	
 	@Test
