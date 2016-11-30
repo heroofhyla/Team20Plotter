@@ -106,4 +106,107 @@ public class Polygon3DTests {
 			assertEquals(zcopy[i]+1, poly.zpoints[i]);
 		}
 	}
+	
+	@Test
+	public void testInvertY(){
+		int[] x = {2,0,0};
+		int[] y = {0,2,0};
+		int[] z = {0, 0, 0};
+		poly = new Polygon3D(3,x,y,z);
+		
+		poly.invertY(0);
+		
+		assertEquals(-2, poly.ypoints[1]);
+	}
+	
+	@Test
+	public void testFindCentroid(){
+		int[] x = {2,0,0};
+		int[] y = {0,2,0};
+		int[] z = {0, 0, 0};
+		poly = new Polygon3D(3,x,y,z);
+		
+		Point3D point = Polygon3D.findCentroid(poly);
+		
+		assertEquals(2.0/3, point.x, 0.001);
+		assertEquals(2.0/3, point.y, 0.001);
+		assertEquals(0, point.z, 0.001);
+	}
+	
+	@Test
+	public void testDivideIntoTriangles(){
+		int[] x = {0,1,1,0};
+		int[] y = {0,0,1,1};
+		int[] z = {0,0,0,0};
+		Point3D[] normals = {new Point3D(), new Point3D(), new Point3D(), new Point3D()};
+		poly = new Polygon3D(4,x,y,z, normals);
+		
+		Polygon3D[] tris = Polygon3D.divideIntoTriangles(poly);
+		assertEquals(2, tris.length);
+		int[][] xExpected = {{0,1,1},{0,1,0}};
+		int[][] yExpected = {{0,0,1},{0,1,1}};
+		int[][] zExpected = {{0,0,0},{0,0,0}};
+		
+		for (int i = 0; i < tris.length; i++){
+			for (int k = 0; k < 3; k++){
+				assertEquals(xExpected[i][k], tris[i].xpoints[k]);
+				assertEquals(yExpected[i][k], tris[i].ypoints[k]);
+				assertEquals(zExpected[i][k], tris[i].zpoints[k]);
+			}
+		}
+	}
+	
+	@Test
+	public void testDivideIntoTrianglesWithTwoPoints(){
+		int[] x = {0,1};
+		int[] y = {1,2};
+		int[] z = {0,0};
+		
+		Point3D[] normals = {new Point3D(), new Point3D()};
+		
+		poly = new Polygon3D(2,x,y,z,normals);
+		
+		Polygon3D[] tris = Polygon3D.divideIntoTriangles(poly);
+		assertEquals(0, tris.length);
+		
+	}
+	
+	@Test
+	public void testExtractSubPolygon3D(){
+		int[] x = {0,1,1,0};
+		int[] y = {0,0,1,1};
+		int[] z = {0,0,0,0};
+		Point3D[] normals = {new Point3D(), new Point3D(), new Point3D(), new Point3D()};
+		poly = new Polygon3D(4,x,y,z, normals);
+		
+		Polygon3D sub = Polygon3D.extractSubPolygon3D(poly, 3, 1);
+		int[] xExpected = {1,1,0};
+		int[] yExpected = {0,1,1};
+		int[] zExpected = {0,0,0};
+		
+		for (int i = 0; i < 3; i++){
+			assertEquals(xExpected[i], sub.xpoints[i]);
+			assertEquals(yExpected[i], sub.ypoints[i]);
+			assertEquals(zExpected[i], sub.zpoints[i]);
+		}
+	}
+	@Test
+	public void testExtractSubPolygon3DWithDifferentStart(){
+		int[] x = {0,1,1,0};
+		int[] y = {0,0,1,1};
+		int[] z = {0,0,0,0};
+		Point3D[] normals = {new Point3D(), new Point3D(), new Point3D(), new Point3D()};
+		poly = new Polygon3D(4,x,y,z, normals);
+		
+		Polygon3D sub = Polygon3D.extractSubPolygon3D(poly, 3, 3);
+		int[] xExpected = {0,0,1};
+		int[] yExpected = {1,0,0};
+		int[] zExpected = {0,0,0};
+		
+		for (int i = 0; i < 3; i++){
+			assertEquals(xExpected[i], sub.xpoints[i]);
+			assertEquals(yExpected[i], sub.ypoints[i]);
+			assertEquals(zExpected[i], sub.zpoints[i]);
+		}
+	}
 }
