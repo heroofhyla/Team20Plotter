@@ -121,7 +121,7 @@ public class Point3D {
 		
 	}
 
-	private static double calculateSquareNorm(Point3D a) {
+	public static double calculateSquareNorm(Point3D a) {
 
 		return calculateDotProduct(a,a);
 	}
@@ -169,6 +169,7 @@ public class Point3D {
 		return pRes;
 	}
 
+	//Typo in the method name - subtract
 	public Point3D substract(Point3D p0) {
 
 		Point3D pRes=new Point3D(this.x-p0.x,this.y-p0.y,this.z-p0.z);
