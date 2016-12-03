@@ -5,6 +5,7 @@ import java.awt.Polygon;
 import java.awt.geom.Area;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Vector;
 
@@ -26,12 +27,13 @@ public class Polygon3D extends Polygon{
 
 	public Polygon3D(int npoints, int[] xpoints, int[] ypoints, int[] zpoints,Point3D[] normals) {
 		this(npoints,xpoints,ypoints,zpoints);
-		this.normals = normals;
+		this.normals = Arrays.copyOf(normals, normals.length);
+		
 	}
 	
 	public Polygon3D(int npoints, int[] xpoints, int[] ypoints, int[] zpoints) {
 		this(npoints,xpoints,ypoints);
-		this.zpoints = zpoints;
+		this.zpoints = Arrays.copyOf(zpoints, zpoints.length);
 	}
 
 

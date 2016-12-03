@@ -91,19 +91,16 @@ public class Polygon3DTests {
 		//doesn't make a copy of the input arrays - it just keeps the
 		//reference. This breaks encapsulation
 		int[] x = {2,0,0};
-		int[] xcopy = x.clone();
 		int[] y = {0,2,0};
-		int[] ycopy = y.clone();
 		int[] z = {0, 0, 0};
-		int[] zcopy = z.clone();
 		poly = new Polygon3D(3,x,y,z);
 		
 		poly.translate(1,1,1);
 		
 		for (int i = 0; i < 3; i++){
-			assertEquals(xcopy[i]+1, poly.xpoints[i]);
-			assertEquals(ycopy[i]+1, poly.ypoints[i]);
-			assertEquals(zcopy[i]+1, poly.zpoints[i]);
+			assertEquals(x[i]+1, poly.xpoints[i]);
+			assertEquals(y[i]+1, poly.ypoints[i]);
+			assertEquals(z[i]+1, poly.zpoints[i]);
 		}
 	}
 	
