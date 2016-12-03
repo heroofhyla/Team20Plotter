@@ -53,8 +53,7 @@ public class Polygon3DTests {
 		int[] y = {2, 3, 4};
 		int[] z = {0, 1, 2};
 		poly = new Polygon3D(3, x, y, z);
-		assertEquals("1,2,0_2,3,1_3,4,2_",poly.toString());
-		//TODO: underscore at end seems bad
+		assertEquals("1,2,0_2,3,1_3,4,2",poly.toString());
 	}
 	
 	@Test
@@ -62,7 +61,7 @@ public class Polygon3DTests {
 		int[] x = {4,6,7};
 		int[] y = {1,4,9};
 		poly = new Polygon3D(3,x,y);
-		assertEquals("4,1_6,4_7,9_", poly.toString());
+		assertEquals("4,1_6,4_7,9", poly.toString());
 	}
 	
 	@Test
@@ -87,9 +86,6 @@ public class Polygon3DTests {
 	
 	@Test
 	public void testTranslate(){
-		//TODO:It really bothers me that the Polygon3D constructor
-		//doesn't make a copy of the input arrays - it just keeps the
-		//reference. This breaks encapsulation
 		int[] x = {2,0,0};
 		int[] y = {0,2,0};
 		int[] z = {0, 0, 0};
