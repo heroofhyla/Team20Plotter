@@ -95,7 +95,7 @@ public class Point3D {
 
 	public static double calculateCosin(Point3D a, Point3D b) {
 
-		double prod=-(calculateSquareNorm(b.substract(a))-calculateSquareNorm(a)-calculateSquareNorm(b))
+		double prod=-(calculateSquareNorm(b.subtract(a))-calculateSquareNorm(a)-calculateSquareNorm(b))
 		/(2*calculateNorm(a)*calculateNorm(b));
 		
 		
@@ -129,7 +129,7 @@ public class Point3D {
 	public static double distance(Point3D a,Point3D b){
 
 
-		return calculateNorm(a.substract(b));
+		return calculateNorm(a.subtract(b));
 	}
 
 
@@ -169,8 +169,8 @@ public class Point3D {
 		return pRes;
 	}
 
-	//Typo in the method name - subtract
-	public Point3D substract(Point3D p0) {
+	
+	public Point3D subtract(Point3D p0) {
 
 		Point3D pRes=new Point3D(this.x-p0.x,this.y-p0.y,this.z-p0.z);
 
@@ -273,7 +273,7 @@ public class Point3D {
 	public static Point3D foundPX_PY_PZ_Intersection(Point3D pstart, Point3D pend,
 			double y) {
 		
-		Point3D intersect=new Point3D(); 
+		Point3D intersect = new Point3D(); 
 
 		double i_pstart_p_y=1.0/(pstart.p_y);
 		double i_end_p_y=1.0/(pend.p_y);
@@ -283,7 +283,7 @@ public class Point3D {
 		double yi=1.0/((1-l)*i_pstart_p_y+l*i_end_p_y);
 		
 		intersect.p_x= ((1-l)*pstart.p_x*i_pstart_p_y+l*pend.p_x*i_end_p_y)*yi;
-		intersect.p_y=  1.0/((1-l)*i_pstart_p_y+l*i_end_p_y);		
+		intersect.p_y=  1.0/((1-l)*i_pstart_p_y+l*i_end_p_y);
 		intersect.p_z=  ((1-l)*pstart.p_z*i_pstart_p_y+l*pend.p_z*i_end_p_y)*yi;
 		
 		return intersect;
