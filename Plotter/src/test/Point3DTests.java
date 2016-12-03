@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.LineData;
 import com.Point3D;
 
 public class Point3DTests {
@@ -178,7 +177,7 @@ public class Point3DTests {
 	@Test
 	public void testSubtract(){
 		
-		Point3D test = pointB.substract(pointA);
+		Point3D test = pointB.subtract(pointA);
 		Point3D expected = new Point3D(3,3,3);
 		
 		assertEquals(expected.x, test.x, 0.1);
@@ -314,20 +313,23 @@ public class Point3DTests {
 	@Test
 	public void testFoundPX_PY_PZIntersection() throws Exception{
 		
-		pointA.p_x = 3;
-		pointA.p_y = 4;
-		pointA.p_z = 5;
+		pointA.p_x = 3.0;
+		pointA.p_y = 4.0;
+		pointA.p_z = 5.0;
 		
-		pointB.p_x = 6;
-		pointB.p_y = 7;
-		pointB.p_z = 8;
+		pointB.p_x = 6.0;
+		pointB.p_y = 7.0;
+		pointB.p_z = 8.0;
 		
 		Point3D test = Point3D.foundPX_PY_PZ_Intersection(pointA, pointB, 10.0);
-		Point3D expected = new Point3D(314.25, 27.933, 8.00);
+		Point3D expected = new Point3D(1, 1, 1);
+		expected.p_x = 26.935;
+		expected.p_y = 27.933;
+		expected.p_z = 28.92;
 		
-		assertEquals(expected.x, test.x, 0.1);
-		assertEquals(expected.y, test.y, 0.1);
-		assertEquals(expected.z, test.z, 0.1);
+		assertEquals(expected.p_x, test.p_x, 0.1);
+		assertEquals(expected.p_y, test.p_y, 0.1);
+		assertEquals(expected.p_z, test.p_z, 0.1);
 		
 		setUp();
 
@@ -336,20 +338,23 @@ public class Point3DTests {
 	@Test
 	public void testFoundPX_PY_PZ_TEXTURE_Intersection() throws Exception{
 		
-		pointA.p_x = 3;
-		pointA.p_y = 4;
-		pointA.p_z = 5;
+		pointA.p_x = 3.0;
+		pointA.p_y = 4.0;
+		pointA.p_z = 5.0;
 		
-		pointB.p_x = 6;
-		pointB.p_y = 7;
-		pointB.p_z = 8;
+		pointB.p_x = 6.0;
+		pointB.p_y = 7.0;
+		pointB.p_z = 8.0;
 		
 		Point3D test = Point3D.foundPX_PY_PZ_TEXTURE_Intersection(pointA, pointB, 10.0);
-		Point3D expected = new Point3D(314.25, 27.933, 8.00);
+		Point3D expected = new Point3D(1, 1, 1);
+		expected.p_x = 26.935;
+		expected.p_y = 27.933;
+		expected.p_z = 28.92;
 		
-		assertEquals(expected.x, test.x, 0.1);
-		assertEquals(expected.y, test.y, 0.1);
-		assertEquals(expected.z, test.z, 0.1);
+		assertEquals(expected.p_x, test.p_x, 0.1);
+		assertEquals(expected.p_y, test.p_y, 0.1);
+		assertEquals(expected.p_z, test.p_z, 0.1);
 
 		setUp(); 
 	}
@@ -366,7 +371,7 @@ public class Point3DTests {
 		pointB.p_z = 8;
 		
 		double test = Point3D.foundPXIntersection(pointA, pointB, 10.0);
-		double expected = 314.25;
+		double expected = 26.935;
 		
 		assertEquals(expected, test, 0.1);
 		
@@ -378,13 +383,13 @@ public class Point3DTests {
 	@Test
 	public void testFoundPYIntersection() throws Exception{
 		
-		pointA.p_x = 3;
-		pointA.p_y = 4;
-		pointA.p_z = 5;
+		pointA.p_x = 3.0;
+		pointA.p_y = 4.0;
+		pointA.p_z = 5.0;
 		
-		pointB.p_x = 6;
-		pointB.p_y = 7;
-		pointB.p_z = 8;
+		pointB.p_x = 6.0;
+		pointB.p_y = 7.0;
+		pointB.p_z = 8.0;
 		
 		double test = Point3D.foundPYIntersection(pointA, pointB, 10.0);
 		double expected = 27.933;
@@ -407,7 +412,7 @@ public class Point3DTests {
 		pointB.p_z = 8;
 		
 		double test = Point3D.foundPZIntersection(pointA, pointB, 10.0);
-		double expected = 8.00;
+		double expected = 28.92;
 		
 		assertEquals(expected, test, 0.1);
 		
