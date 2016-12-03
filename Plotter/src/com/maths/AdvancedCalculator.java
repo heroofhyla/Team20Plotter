@@ -32,7 +32,7 @@ public class AdvancedCalculator {
 		double dx=(x2-x1)/num;
 		double dx_6=dx/6.0;
 		
-		for(double x=x1;x<x2;x=x+dx){
+		for(double x=x1;x<x2 - dx;x=x+dx){
 		
 		  //total+=dx*(calc.f(x)+calc.f(x+dx)+4*calc.f((x*2+dx)/2.0))/6.0;
 		 total+=calc.f(x)+calc.f(x+dx)+4*calc.f((x*2+dx)*0.5);
@@ -56,7 +56,7 @@ public class AdvancedCalculator {
 		double dx=(x2-x1)/num;
 		double dx_2=dx/2;
 		
-		for(double x=x1;x<x2;x=x+dx){
+		for(double x=x1;x<x2 - dx;x=x+dx){
 		
 		  //total+=dx*(calc.f(x+dx)-calc.f(x-dx))/2;	
 			total+=(calc.f(x+dx)+calc.f(x));
@@ -93,7 +93,7 @@ public class AdvancedCalculator {
 		
 		};
 		
-		for(double x=x1;x<x2;x=x+dx){
+		for(double x=x1;x<x2 - dx;x=x+dx){
 		
 	       for(int j=0;j<xrg.length;j++){
 	    	   

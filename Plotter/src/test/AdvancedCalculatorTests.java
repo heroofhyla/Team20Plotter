@@ -32,21 +32,21 @@ public class AdvancedCalculatorTests {
 	public void testSimpsonIntegral() {
 		double simpson = AdvancedCalculator.SimpsonIntegral(new MockCalculator(0, 0));
 		
-		//Fails! assertEquals(82.95, simpson, 0.1);
+		assertEquals(82.95, simpson, 0.1);
 	}
 	
 	@Test
 	public void testTrapeziumIntegral() {
 		double trap = AdvancedCalculator.trapeziumIntegral(new MockCalculator(0, 0));
 		
-		//Fails! assertEquals(82.95, trap, 0.1);
+		assertEquals(82.95, trap, 0.1);
 	}
 	
 	@Test
 	public void testGaussIntegral() {
 		double gauss = AdvancedCalculator.gaussIntegral(new MockCalculator(0, 0));
 		
-		//Fails! assertEquals(82.95, gauss, 0.1);
+		assertEquals(82.95, gauss, 0.1);
 	}
 	
 	@Test
