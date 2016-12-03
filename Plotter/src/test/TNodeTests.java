@@ -107,7 +107,7 @@ public class TNodeTests {
 		TNode parent = new TNode();
 		node.setParent(parent);
 		
-		//Fails! assertEquals(1, parent.getChildCount());
+		assertEquals(1, parent.getChildCount());
 	}
 
 }

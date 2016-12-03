@@ -35,6 +35,7 @@ public class TNode {
 
 	public void setParent(TNode parent) {
 		this.parent = parent;
+		parent.appendChild(this);
 	}
 
 	
@@ -73,7 +74,7 @@ public class TNode {
 	
 	public void appendChild(TNode child){
 		
-		child.setParent(this);
+		child.parent = this;
 		children.add(child);
 	}
 
